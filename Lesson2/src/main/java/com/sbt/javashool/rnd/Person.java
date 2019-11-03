@@ -1,14 +1,41 @@
 package com.sbt.javashool.rnd;
 
 public class Person {
-    private final boolean man;
+
+    public enum GenderState {
+        MAN,
+        WOMAN
+    }
+
+    private final GenderState gender;
     private final String name;
 
     private Person spouse;
-    
-    public Person(boolean man, String name, Person spouse) {
-        this.man = man;
+
+    public Person(GenderState gender, String name) {
+        this.gender = gender;
         this.name = name;
-        this.spouse = spouse;
     }
+
+    public boolean marry(Person person) {
+        if (this.gender != person.gender && this.spouse != person) {
+            this.divorce();
+            this.spouse = person;
+            person.marry(this);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean divorce() {
+        if (spouse != null) {
+            spouse.divorce();
+            spouse = null;
+            return true;
+        }
+        return false;
+    }
+
 }
+
+
