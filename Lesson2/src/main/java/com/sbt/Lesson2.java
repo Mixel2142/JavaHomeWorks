@@ -22,5 +22,4 @@ public class Lesson2 {
         this.lastName = lastName;
     }
 
-    public  Lesson2(
 }
