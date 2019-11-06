@@ -29,8 +29,9 @@ public class Person {
 
     public boolean divorce() {
         if (spouse != null) {
-            spouse.divorce();
+            Person buffPerson = spouse;
             spouse = null;
+            buffPerson.divorce();
             return true;
         }
         return false;
