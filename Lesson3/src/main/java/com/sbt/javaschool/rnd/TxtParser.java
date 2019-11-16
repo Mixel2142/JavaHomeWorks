@@ -53,13 +53,21 @@ public class TxtParser {
         sortedList.addAll(listText.stream()
                 .flatMap(line -> Arrays.stream(line.split("[,. +]+")))
                 .collect(Collectors.toList()));
-        Comparator<List<String>> compLenght = null;
 
-        sortedList.sort((o1, o2) -> {
-            return o1.length() - o2.length();
-        });
+        Map<String, Integer> occurrences = new HashMap<String, Integer>();
 
-        sortedList.forEach(System.out::println);
+        for (String word : sortedList) {
+            Integer oldCount = occurrences.get(word);
+            if (oldCount == null) {
+                oldCount = 0;
+            }
+            occurrences.put(word, oldCount + 1);
+        }
+
+        for (Map.Entry<String, Integer> pair : occurrences.entrySet()) {
+            System.out.println(pair.getKey() + ":" + pair.getValue());
+        }
+
     }
 
 

@@ -17,6 +17,7 @@ public class TxtParserTest {
 
     @Test
     public void showWords() {
-        txtParser.showWords();
+        //txtParser.showWords();
+        txtParser.countSimilarWords();
     }
 }
