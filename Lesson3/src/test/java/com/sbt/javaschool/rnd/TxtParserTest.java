@@ -18,6 +18,11 @@ public class TxtParserTest {
     @Test
     public void showWords() {
         //txtParser.showWords();
-        txtParser.countSimilarWords();
+       // txtParser.countSimilarWords();
+    }
+
+    @Test
+    public void printTextReverse() {
+        txtParser.printTextReverse();
     }
 }

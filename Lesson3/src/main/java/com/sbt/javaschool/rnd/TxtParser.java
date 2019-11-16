@@ -67,7 +67,11 @@ public class TxtParser {
         for (Map.Entry<String, Integer> pair : occurrences.entrySet()) {
             System.out.println(pair.getKey() + ":" + pair.getValue());
         }
+    }
 
+    public final void printTextReverse() {
+        Collections.reverse(listText);
+        listText.forEach(System.out::println);
     }
 
 
