@@ -1,4 +1,4 @@
-package com.sbt.javashool.rnd;
+package com.sbt.javaschool.rnd;
 
 public class MyFirstClass {
     public static void printHelloWorld() {

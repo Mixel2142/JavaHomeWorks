@@ -1,4 +1,4 @@
-import com.sbt.javashool.rnd.Person;
+import com.sbt.javaschool.rnd.Person;
 
 public class main {
     public static void main(String[] args) {
