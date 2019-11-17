@@ -70,9 +70,28 @@ public class TxtParser {
     }
 
     public final void printTextReverse() {
-        Collections.reverse(listText);
-        listText.forEach(System.out::println);
+//        Collections.reverse(listText);
+//        listText.forEach(System.out::println);
+
+        Iterator<String> listIter = listText.iterator();
+
+        while(listIter.hasNext()) {
+            System.out.println(listIter.next());
+        }
+
+        System.out.println("\n");
+        // Generate an iterator. Start just after the last element.
+        ListIterator listRevIter = listText.listIterator(listText.size());
+
+        while(listRevIter.hasPrevious()) {
+            System.out.println(listRevIter.previous());
+        }
     }
 
+    public final void printRandomLines(Integer nubmbLine) {
+//        if (nubmbLine < 0 || nubmbLine >= listText.size())
+//            throw new IllegalArgumentException(String.valueOf(nubmbLine));
+        System.out.println(listText.get(nubmbLine));
+    }
 
 }
