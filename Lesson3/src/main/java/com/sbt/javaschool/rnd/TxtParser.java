@@ -3,12 +3,14 @@ package com.sbt.javaschool.rnd;
 
 import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 
+import java.awt.*;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -75,7 +77,7 @@ public class TxtParser {
 
         Iterator<String> listIter = listText.iterator();
 
-        while(listIter.hasNext()) {
+        while (listIter.hasNext()) {
             System.out.println(listIter.next());
         }
 
@@ -83,15 +85,15 @@ public class TxtParser {
         // Generate an iterator. Start just after the last element.
         ListIterator listRevIter = listText.listIterator(listText.size());
 
-        while(listRevIter.hasPrevious()) {
+        while (listRevIter.hasPrevious()) {
             System.out.println(listRevIter.previous());
         }
     }
 
-    public final void printRandomLines(Integer nubmbLine) {
+    public final void printRandomLines(Integer numbLine) {
 //        if (nubmbLine < 0 || nubmbLine >= listText.size())
 //            throw new IllegalArgumentException(String.valueOf(nubmbLine));
-        System.out.println(listText.get(nubmbLine));
+        System.out.println(listText.get(numbLine));
     }
 
 }
