@@ -14,24 +14,12 @@ public class MyLinkedList<E> implements Iterable<E> {
     Node<E> last;
     Node<E> first;
 
-    private static class Node<E> {
-        E item;
-        Node<E> next;
-        Node<E> prev;
-
-        Node(Node<E> prev, E element, Node<E> next) {
-            this.item = element;
-            this.next = next;
-            this.prev = prev;
-        }
-    }
+    int size = 0;
+    int modCount = 0;
 
     public int getSize() {
         return size;
     }
-
-    int size = 0;
-    int modCount = 0;
 
     public boolean add(E e) {
         linkLast(e);
@@ -200,9 +188,6 @@ public class MyLinkedList<E> implements Iterable<E> {
         public E next() {
             return itr.next();
         }
-        public void remove() {
-            itr.remove();
-        }
     }
 
     private class ListItr {
@@ -253,37 +238,11 @@ public class MyLinkedList<E> implements Iterable<E> {
             return nextIndex - 1;
         }
 
-        public void remove() {
-            checkForComodification();
-            if (lastReturned == null)
-                throw new IllegalStateException();
-
-            Node<E> lastNext = lastReturned.next;
-            unlink(lastReturned);
-            if (next == lastReturned)
-                next = lastNext;
-            else
-                nextIndex--;
-            lastReturned = null;
-            expectedModCount++;
-        }
-
         public void set(E e) {
             if (lastReturned == null)
                 throw new IllegalStateException();
             checkForComodification();
             lastReturned.item = e;
-        }
-
-        public void add(E e) {
-            checkForComodification();
-            lastReturned = null;
-            if (next == null)
-                linkLast(e);
-            else
-                linkBefore(e, next);
-            nextIndex++;
-            expectedModCount++;
         }
 
         public void forEachRemaining(Consumer<? super E> action) {
@@ -300,6 +259,18 @@ public class MyLinkedList<E> implements Iterable<E> {
         final void checkForComodification() {
             if (modCount != expectedModCount)
                 throw new ConcurrentModificationException();
+        }
+    }
+
+    private static class Node<E> {
+        E item;
+        Node<E> next; // reference to next Node
+        Node<E> prev; // reference to previous Node
+
+        Node(Node<E> prev, E element, Node<E> next) {
+            this.item = element;
+            this.next = next;
+            this.prev = prev;
         }
     }
 
