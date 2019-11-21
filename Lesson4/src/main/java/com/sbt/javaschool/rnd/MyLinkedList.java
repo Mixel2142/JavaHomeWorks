@@ -177,10 +177,10 @@ public class MyLinkedList<E> implements Iterable<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return new MyIterator();
+        return new MyLinkedListIterator();
     }
 
-    private class MyIterator implements Iterator<E> {
+    private class MyLinkedListIterator implements Iterator<E> {
         private final ListItr itr = new ListItr(0);
         public boolean hasNext() {
             return itr.hasNext();

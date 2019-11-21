@@ -74,7 +74,7 @@ public class MyLinkedListTest {
     }
 
     @Test
-    public void myIterator() {
+    public void myLinkedListIteratorTest() {
         listStr.addAll(str);
         List<String> testStr = new ArrayList<String>();
 
