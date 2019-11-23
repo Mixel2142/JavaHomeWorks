@@ -16,9 +16,9 @@ public interface Terminal {
 
     void checkBalance();
 
-    void withdrawMoney();
+    void withdrawMoney(String amount);
 
-    void putMoney();
+    void putMoney(String amount);
 
     void closeSession();
 }

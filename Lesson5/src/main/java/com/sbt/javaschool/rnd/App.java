@@ -39,6 +39,7 @@ public class App {
         while (true) {
             terminal.showActions();
             String action = scanner.nextLine();
+            String amount;
 
             if (action.matches("[0-4]{1}")) {
                 switch (Integer.parseInt(action)) {
@@ -46,15 +47,19 @@ public class App {
                         terminal.checkBalance();
                         break;
                     case PUT_MONEY:
-
-                        terminal.putMoney();
+                        System.out.println("Введите сумму денег(кратна 100-м), которую вы хотите положить на счёт.");
+                        System.out.print("Ввод:>");
+                        amount = scanner.nextLine();
+                        terminal.putMoney(amount);
                         break;
                     case WITHDRAW_MONEY:
-                        terminal.withdrawMoney();
+                        System.out.println("Введите сумму денег(кратна 100-м), которую вы хотите снять с счёта.");
+                        System.out.print("Ввод:>");
+                        amount = scanner.nextLine();
+                        terminal.withdrawMoney(amount);
                         break;
                     case CLOSE_SESSION:
                         terminal.closeSession();
-                        return;
                     default:
                         throw new IllegalStateException("Unexpected value: " + Integer.parseInt(action));
                 }

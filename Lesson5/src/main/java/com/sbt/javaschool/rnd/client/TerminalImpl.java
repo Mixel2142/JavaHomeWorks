@@ -54,7 +54,7 @@ public class TerminalImpl implements Terminal {
     }
 
     @Override
-    public void putMoney() {
+    public void putMoney(String amount) {
         if (accountAcces) {
 
             return;
@@ -69,7 +69,7 @@ public class TerminalImpl implements Terminal {
     }
 
     @Override
-    public void withdrawMoney() {
+    public void withdrawMoney(String amount) {
         if (accountAcces) {
 
             return;
