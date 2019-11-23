@@ -1,7 +1,7 @@
 package com.sbt.javaschool.rnd.client;
 
-import com.sbt.javaschool.rnd.client.validating.ValidatorImpl;
-import com.sbt.javaschool.rnd.client.validating.Validator;
+import com.sbt.javaschool.rnd.validating.ValidatorImpl;
+import com.sbt.javaschool.rnd.validating.Validator;
 import com.sbt.javaschool.rnd.server.Server;
 import com.sbt.javaschool.rnd.server.ServerImpl;
 
@@ -63,7 +63,13 @@ public class TerminalImpl implements Terminal {
     }
 
     @Override
-    public void withdrawMoney(Integer amount) {
+    public void closeSession() {
+        accountName = "";
+        accountAcces = false;
+    }
+
+    @Override
+    public void withdrawMoney() {
         if (accountAcces) {
 
             return;
@@ -89,7 +95,8 @@ public class TerminalImpl implements Terminal {
         System.out.println("(1): Пополнить баланс.");
         System.out.println("(2): Снять деньги.");
         System.out.println("(3): Перевести на другой аккаунт.");
-        System.out.println("Ввод:> ");
+        System.out.println("(4): Покинуть аккаунт.");
+        System.out.print("Ввод:> ");
     }
 
 

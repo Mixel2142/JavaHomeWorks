@@ -26,10 +26,11 @@ public class App {
         while (true) {
 
             terminal.doWelcomePinCode();
-            Integer pinCode = scanner.nextInt();
+            String pinCode = scanner.nextLine();
 
-            if (terminal.checkPinCode(pinCode.toString())) {
+            if (terminal.checkPinCode(pinCode)) {
                 accountRun();
+                return;
             }
         }
     }
@@ -37,8 +38,32 @@ public class App {
     static void accountRun() {
         while (true) {
             terminal.showActions();
+            String action = scanner.nextLine();
 
+            if (action.matches("[0-4]{1}")) {
+                switch (Integer.parseInt(action)) {
+                    case CHECK_BALANCE:
+                        terminal.checkBalance();
+                        break;
+                    case PUT_MONEY:
+
+                        terminal.putMoney();
+                        break;
+                    case WITHDRAW_MONEY:
+                        terminal.withdrawMoney();
+                        break;
+                    case CLOSE_SESSION:
+                        terminal.closeSession();
+                        return;
+                    default:
+                        throw new IllegalStateException("Unexpected value: " + Integer.parseInt(action));
+                }
+            }
         }
     }
 
+    public static final int CHECK_BALANCE = 0;
+    public static final int PUT_MONEY = 1;
+    public static final int WITHDRAW_MONEY = 2;
+    public static final int CLOSE_SESSION = 4;
 }

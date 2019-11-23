@@ -1,4 +1,4 @@
-package com.sbt.javaschool.rnd.client.validating;
+package com.sbt.javaschool.rnd.validating;
 
 public interface Validator {
     public boolean isPasswordValid(String password);

@@ -1,4 +1,4 @@
-package com.sbt.javaschool.rnd.client.validating;
+package com.sbt.javaschool.rnd.validating;
 
 import com.sbt.javaschool.rnd.server.Server;
 import com.sbt.javaschool.rnd.server.ServerImpl;
