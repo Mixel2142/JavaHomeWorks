@@ -14,8 +14,8 @@ public class TerminalImpl implements Terminal {
         validator = new ValidatorImpl();
     }
 
-    private String accountName;
-    private boolean accountAcces;
+    private String accountName = "";
+    private boolean accountAcces = false;
 
     @Override
     public boolean initSession(String accountName) {
@@ -31,16 +31,17 @@ public class TerminalImpl implements Terminal {
     @Override
     public void doWelcomeAccount() {
         if (accountName.isEmpty()) {
-            System.out.println("Введите имя аккаунта.\n");
+            System.out.println("Введите имя аккаунта.");
+            System.out.print("Ввод:> ");
         } else {
-            System.out.println("Добро пожаловать," + accountName + "!\n");
+            System.out.println("Добро пожаловать," + accountName + "!");
         }
     }
 
     @Override
     public void doWelcomePinCode() {
-        System.out.println(accountName + ", введите пинкод состоящий из 4 цифр.\n");
-        System.out.println("Ввод:> ");
+        System.out.println(accountName + ", введите пинкод состоящий из 4 цифр.");
+        System.out.print("Ввод:> ");
     }
 
     @Override
@@ -83,7 +84,7 @@ public class TerminalImpl implements Terminal {
 
     @Override
     public void showActions() {
-        System.out.println("Введите код одного из действий:\n");
+        System.out.println("Введите код одного из действий:");
         System.out.println("(0): Проверить баланс.");
         System.out.println("(1): Пополнить баланс.");
         System.out.println("(2): Снять деньги.");

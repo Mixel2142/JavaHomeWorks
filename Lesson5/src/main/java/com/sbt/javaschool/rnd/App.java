@@ -7,10 +7,10 @@ import java.util.Scanner;
 
 public class App {
 
-    Scanner scanner = new Scanner(System.in);
-    Terminal terminal = new TerminalImpl();
+    static Scanner scanner = new Scanner(System.in);
+    static Terminal terminal = new TerminalImpl();
 
-    public void main(String[] args) {
+    public static void main(String[] args) {
         while (true) {
 
             terminal.doWelcomeAccount();
@@ -22,7 +22,7 @@ public class App {
         }
     }
 
-    void sessionRun() {
+    static void sessionRun() {
         while (true) {
 
             terminal.doWelcomePinCode();
@@ -34,7 +34,7 @@ public class App {
         }
     }
 
-    void accountRun() {
+    static void accountRun() {
         while (true) {
             terminal.showActions();
 
