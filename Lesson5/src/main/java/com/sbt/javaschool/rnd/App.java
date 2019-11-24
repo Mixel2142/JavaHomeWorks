@@ -50,24 +50,26 @@ public class App {
             if (action.matches("[0-4]{1}")) {
                 switch (Integer.parseInt(action)) {
                     case CHECK_BALANCE:
-                        terminal.checkBalance();
+                        System.out.println("Ваш баланс:"+terminal.checkBalance());
                         break;
                     case PUT_MONEY:
                         System.out.println("Введите сумму денег(кратна 100-м), которую вы хотите положить на счёт.");
                         System.out.print("Ввод:>");
                         amount = scanner.nextLine();
-                        terminal.putMoney(amount);
+                        System.out.println("Ваш баланс:"+terminal.putMoney(amount));
                         break;
                     case WITHDRAW_MONEY:
                         System.out.println("Введите сумму денег(кратна 100-м), которую вы хотите снять с счёта.");
                         System.out.print("Ввод:>");
                         amount = scanner.nextLine();
-                        terminal.withdrawMoney(amount);
+                        System.out.println("Ваш баланс:"+terminal.withdrawMoney(amount));
                         break;
                     case CLOSE_SESSION:
                         terminal.closeSession();
+                        System.out.println("Сессия была закрыта.");
+                        break;
                     default:
-                        System.out.println("Введено не верное значение"+Integer.parseInt(action)+".");
+                        System.out.println("Введено не верное значение:"+Integer.parseInt(action)+".");
                 }
             }
         }
@@ -75,7 +77,7 @@ public class App {
 
     static void doWelcomeAccount(String accountName) {
         if (accountName.isEmpty()) {
-            System.out.println("Введите имя аккаунта.");
+            System.out.println("\nВведите имя аккаунта.");
             System.out.print("Ввод:> ");
         } else {
             System.out.println("Добро пожаловать," + accountName + "!");

@@ -2,9 +2,6 @@ package com.sbt.javaschool.rnd.server;
 
 import com.sbt.javaschool.rnd.exceptions.*;
 import com.sbt.javaschool.rnd.server.Server;
-import javafx.util.Pair;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import java.util.Map;
@@ -24,7 +21,7 @@ public class ServerImpl implements Server {
     @Override
     public boolean isPinCodeExist(String account, String password) throws PinCodeIsNotExistExeption {
 
-        if (dataBase.get(account).password == Integer.parseInt(password)) {
+        if (dataBase.get(account).getPassword() == Integer.parseInt(password)) {
             return true;
         }
         throw new PinCodeIsNotExistExeption("Пароль не верный.");
@@ -36,5 +33,26 @@ public class ServerImpl implements Server {
             return true;
         }
         throw new AccountIsNotExistExeption("База данных не содержит такого аккаунта.");
+    }
+
+    @Override
+    public Integer checkBalance(String account) {
+        return dataBase.get(account).getMoney();
+    }
+
+    @Override
+    public Integer withdrawMoney(String account, String amount) throws MoneyExeption {
+        Integer currentMoney = dataBase.get(account).getMoney() - Integer.parseInt(amount);
+        if (currentMoney < 0)
+            throw new MoneyExeption("На счёта не достаточно средств:" + dataBase.get(account).getMoney()+".");
+        dataBase.get(account).setMoney(currentMoney);
+        return currentMoney;
+    }
+
+    @Override
+    public Integer putMoney(String account, String amount) {
+        Integer currentMoney = dataBase.get(account).getMoney() + Integer.parseInt(amount);
+        dataBase.get(account).setMoney(currentMoney);
+        return currentMoney;
     }
 }

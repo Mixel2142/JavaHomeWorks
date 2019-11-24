@@ -4,16 +4,16 @@ import com.sbt.javaschool.rnd.exceptions.*;
 
 public interface Terminal {
 
-    boolean initSession(String accountName) ;
+    boolean initSession(String accountName);
 
     boolean checkPinCode(String pinCode);
 
 
-    boolean checkBalance();
+    Integer checkBalance();
 
-    boolean withdrawMoney(String amount) ;
+    Integer withdrawMoney(String amount);
 
-    boolean putMoney(String amount) ;
+    Integer putMoney(String amount);
 
     void closeSession();
 }
