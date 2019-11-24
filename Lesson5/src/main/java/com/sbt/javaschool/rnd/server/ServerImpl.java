@@ -1,5 +1,6 @@
 package com.sbt.javaschool.rnd.server;
 
+import com.sbt.javaschool.rnd.exceptions.*;
 import com.sbt.javaschool.rnd.server.Server;
 
 import java.util.HashMap;
@@ -15,20 +16,19 @@ public class ServerImpl implements Server {
     }
 
     @Override
-    public boolean isPinCodeExist(String data) {
-        if (dataBase.containsValue(Integer.parseInt(data))) {
+    public boolean isPinCodeExist(String accaunt,String password) throws PinCodeIsNotExistExeption {
+
+        if (dataBase.get(accaunt) == Integer.parseInt(password)) {
             return true;
         }
-        //throw new PinCodeIsNotExist()
-        return false;
+        throw new PinCodeIsNotExistExeption("Пароль не верный.");
     }
 
     @Override
-    public boolean isAccountExist(String data) {
+    public boolean isAccountExist(String data) throws AccountIsNotExistExeption {
         if (dataBase.containsKey(data)) {
             return true;
         }
-        //throw new AccountIsNotExist()
-        return false;
+        throw new AccountIsNotExistExeption("База данных не содержит такого аккаунта.");
     }
 }

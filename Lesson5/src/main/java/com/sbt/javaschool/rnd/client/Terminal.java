@@ -1,24 +1,19 @@
 package com.sbt.javaschool.rnd.client;
 
+import com.sbt.javaschool.rnd.exceptions.*;
+
 public interface Terminal {
 
-    void doWelcomeAccount();
-
-    void doWelcomePinCode();
-
-    void showActions();
-
-
-    boolean initSession(String accountName);
+    boolean initSession(String accountName) ;
 
     boolean checkPinCode(String pinCode);
 
 
-    void checkBalance();
+    boolean checkBalance();
 
-    void withdrawMoney(String amount);
+    boolean withdrawMoney(String amount) ;
 
-    void putMoney(String amount);
+    boolean putMoney(String amount) ;
 
     void closeSession();
 }

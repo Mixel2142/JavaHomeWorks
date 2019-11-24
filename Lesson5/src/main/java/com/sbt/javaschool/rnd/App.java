@@ -10,22 +10,28 @@ public class App {
     static Scanner scanner = new Scanner(System.in);
     static Terminal terminal = new TerminalImpl();
 
+    public static final int CHECK_BALANCE = 0;
+    public static final int PUT_MONEY = 1;
+    public static final int WITHDRAW_MONEY = 2;
+    public static final int CLOSE_SESSION = 3;
+
     public static void main(String[] args) {
         while (true) {
 
-            terminal.doWelcomeAccount();
+            doWelcomeAccount("");
             String accountName = scanner.nextLine();
 
             if (terminal.initSession(accountName)) {
-                sessionRun();
+                doWelcomeAccount(accountName);
+                sessionRun(accountName);
             }
         }
     }
 
-    static void sessionRun() {
+    static void sessionRun(String accountName) {
         while (true) {
 
-            terminal.doWelcomePinCode();
+            doWelcomePinCode(accountName);
             String pinCode = scanner.nextLine();
 
             if (terminal.checkPinCode(pinCode)) {
@@ -37,7 +43,7 @@ public class App {
 
     static void accountRun() {
         while (true) {
-            terminal.showActions();
+            showActions();
             String action = scanner.nextLine();
             String amount;
 
@@ -61,14 +67,32 @@ public class App {
                     case CLOSE_SESSION:
                         terminal.closeSession();
                     default:
-                        throw new IllegalStateException("Unexpected value: " + Integer.parseInt(action));
+                        System.out.println("Введено не верное значение"+Integer.parseInt(action)+".");
                 }
             }
         }
     }
 
-    public static final int CHECK_BALANCE = 0;
-    public static final int PUT_MONEY = 1;
-    public static final int WITHDRAW_MONEY = 2;
-    public static final int CLOSE_SESSION = 4;
+    static void doWelcomeAccount(String accountName) {
+        if (accountName.isEmpty()) {
+            System.out.println("Введите имя аккаунта.");
+            System.out.print("Ввод:> ");
+        } else {
+            System.out.println("Добро пожаловать," + accountName + "!");
+        }
+    }
+
+    static void doWelcomePinCode(String accountName) {
+        System.out.println(accountName + ", введите пинкод состоящий из 4 цифр.");
+        System.out.print("Ввод:> ");
+    }
+
+    static void showActions() {
+        System.out.println("Введите код одного из действий:");
+        System.out.println("(0): Проверить баланс.");
+        System.out.println("(1): Пополнить баланс.");
+        System.out.println("(2): Снять деньги.");
+        System.out.println("(3): Покинуть аккаунт.");
+        System.out.print("Ввод:> ");
+    }
 }

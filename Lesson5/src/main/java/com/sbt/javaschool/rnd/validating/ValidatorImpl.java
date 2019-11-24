@@ -1,5 +1,6 @@
 package com.sbt.javaschool.rnd.validating;
 
+import com.sbt.javaschool.rnd.exceptions.*;
 import com.sbt.javaschool.rnd.server.Server;
 import com.sbt.javaschool.rnd.server.ServerImpl;
 
@@ -13,29 +14,24 @@ public class ValidatorImpl implements Validator {
     final Integer MAX_LENGHT_OF_ACCOUNTNAME = 10;
 
     @Override
-    public boolean isPasswordValid(String password) {
-        if (password.length() == LENGHT_OF_PINCODE) {
-          if(password.matches("[0-9]{4}" )) {
-              return request.isPinCodeExist(password);
-          }
-            //throw new PinCodeContentExeption;
-            return false;
-        }
-        //throw new PinCodeLengthExeption;
-        return false;
+    public boolean isPasswordValid(String accaunt, String password) throws PinCodeIsNotValidExeption, PinCodeIsNotExistExeption {
+        if (password.length() != LENGHT_OF_PINCODE)
+            throw new PinCodeIsNotValidExeption("Длина пинкода должна быть равной " + LENGHT_OF_PINCODE + ".");
+
+        if (!password.matches("[0-9]{4}"))//?? как засунуть константу LENGHT_OF_PINCODE в регулярное выражение
+            throw new PinCodeIsNotValidExeption("Пинкод может содержать только цифры от 0 до 9.");
+
+        return request.isPinCodeExist(accaunt, password);
     }
 
     @Override
-    public boolean isAccountsValid(String accountName) {
-        if(accountName.length() < MAX_LENGHT_OF_ACCOUNTNAME && accountName.length() != 0) {
-            if (request.isAccountExist(accountName)) {
-                return true;
-            }
-            //throw new AccountIsNotExist;
-            return false;
-        }
-        //throw new AccountLengthExeption;
-        return false;
+    public boolean isAccountsValid(String accountName) throws AccountIsNotValidExeption, AccountIsNotExistExeption {
+        if (accountName.length() > MAX_LENGHT_OF_ACCOUNTNAME || accountName.length() == 0)
+            throw new AccountIsNotValidExeption("Имя аккаунта должно быть больше нуля и меньше" + MAX_LENGHT_OF_ACCOUNTNAME + ".");
+
+        request.isAccountExist(accountName);
+
+        return true;
     }
 
 }
