@@ -43,10 +43,12 @@ public class ServerImpl implements Server {
     @Override
     public Integer withdrawMoney(String account, String amount) throws MoneyExeption {
         Integer currentMoney = dataBase.get(account).getMoney() - Integer.parseInt(amount);
-        if (currentMoney < 0)
-            throw new MoneyExeption("На счёта не достаточно средств:" + dataBase.get(account).getMoney()+".");
-        dataBase.get(account).setMoney(currentMoney);
-        return currentMoney;
+
+            if (currentMoney < 0)
+                throw new MoneyExeption("На счёта не достаточно средств:" + dataBase.get(account).getMoney() + ".");
+            dataBase.get(account).setMoney(currentMoney);
+            return dataBase.get(account).getMoney();
+
     }
 
     @Override

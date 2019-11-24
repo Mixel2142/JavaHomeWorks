@@ -53,21 +53,21 @@ public class App {
                         System.out.println("Ваш баланс:"+terminal.checkBalance());
                         break;
                     case PUT_MONEY:
-                        System.out.println("Введите сумму денег(кратна 100-м), которую вы хотите положить на счёт.");
+                        System.out.println("Введите сумму денег, которую вы хотите положить на счёт.");
                         System.out.print("Ввод:>");
                         amount = scanner.nextLine();
-                        System.out.println("Ваш баланс:"+terminal.putMoney(amount));
+                        terminal.putMoney(amount);
                         break;
                     case WITHDRAW_MONEY:
                         System.out.println("Введите сумму денег(кратна 100-м), которую вы хотите снять с счёта.");
                         System.out.print("Ввод:>");
                         amount = scanner.nextLine();
-                        System.out.println("Ваш баланс:"+terminal.withdrawMoney(amount));
+                        terminal.withdrawMoney(amount);
                         break;
                     case CLOSE_SESSION:
                         terminal.closeSession();
                         System.out.println("Сессия была закрыта.");
-                        break;
+                        return;
                     default:
                         System.out.println("Введено не верное значение:"+Integer.parseInt(action)+".");
                 }
@@ -97,4 +97,5 @@ public class App {
         System.out.println("(3): Покинуть аккаунт.");
         System.out.print("Ввод:> ");
     }
+
 }

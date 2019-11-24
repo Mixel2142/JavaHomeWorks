@@ -51,23 +51,27 @@ public class TerminalImpl implements Terminal {
     }
 
     @Override
-    public Integer putMoney(String amount) {
-        if (checkAccountAcces()) {
-            return server.putMoney(accountName, amount);
-        }
-        return 0;
+    public void putMoney(String amount) {
+        if (checkAccountAcces())
+            try {
+                validator.isAmountValid(amount);
+                server.putMoney(accountName, amount);
+            } catch (AmountIsNotValidExeption e) {
+                System.err.println(e.getMessage());
+            }
     }
 
     @Override
-    public Integer withdrawMoney(String amount) {
-        if (checkAccountAcces()) {
+    public void withdrawMoney(String amount) {
+        if (checkAccountAcces())
             try {
-                return server.withdrawMoney(accountName, amount);
+                validator.isAmountValid(amount);
+                server.withdrawMoney(accountName, amount);
             } catch (MoneyExeption e) {
                 System.err.println(e.getMessage());
+            } catch (AmountIsNotValidExeption e) {
+                System.err.println(e.getMessage());
             }
-        }
-        return 0;
     }
 
     @Override
@@ -75,7 +79,6 @@ public class TerminalImpl implements Terminal {
         try {
             if (lockState)
                 throw new AccountIsLockedException("Аккаунт заблокирован на" + lockedTimeSec + "секунд из-за трёх попыток ввода не правильного пароля.");
-
 
             if (validator.isPasswordValid(accountName, pinCode)) {
                 accountPassword = pinCode;

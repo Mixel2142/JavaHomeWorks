@@ -8,4 +8,5 @@ public interface Validator {
 
     public boolean isAccountsValid(String accountName) throws AccountIsNotValidExeption, AccountIsNotExistExeption;
 
+    public boolean isAmountValid(String amount) throws AmountIsNotValidExeption;
 }
