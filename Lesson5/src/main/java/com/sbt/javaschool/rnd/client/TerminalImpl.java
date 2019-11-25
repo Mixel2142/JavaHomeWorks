@@ -1,8 +1,7 @@
 package com.sbt.javaschool.rnd.client;
 
 import com.sbt.javaschool.rnd.exceptions.*;
-import com.sbt.javaschool.rnd.validating.ValidatorImpl;
-import com.sbt.javaschool.rnd.validating.Validator;
+import com.sbt.javaschool.rnd.validating.*;
 import com.sbt.javaschool.rnd.server.Server;
 import com.sbt.javaschool.rnd.server.ServerImpl;
 

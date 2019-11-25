@@ -57,12 +57,14 @@ public class App {
                         System.out.print("Ввод:>");
                         amount = scanner.nextLine();
                         terminal.putMoney(amount);
+                        System.out.println("Ваш баланс:"+terminal.checkBalance());
                         break;
                     case WITHDRAW_MONEY:
                         System.out.println("Введите сумму денег(кратна 100-м), которую вы хотите снять с счёта.");
                         System.out.print("Ввод:>");
                         amount = scanner.nextLine();
                         terminal.withdrawMoney(amount);
+                        System.out.println("Ваш баланс:"+terminal.checkBalance());
                         break;
                     case CLOSE_SESSION:
                         terminal.closeSession();

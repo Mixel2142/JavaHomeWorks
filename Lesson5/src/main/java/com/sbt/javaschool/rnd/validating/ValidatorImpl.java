@@ -3,10 +3,11 @@ package com.sbt.javaschool.rnd.validating;
 import com.sbt.javaschool.rnd.exceptions.*;
 import com.sbt.javaschool.rnd.server.Server;
 import com.sbt.javaschool.rnd.server.ServerImpl;
+import org.mockito.internal.matchers.Null;
 
-/*
-Проверяет на валидность данных и их существование.
- */
+import java.text.NumberFormat;
+
+
 public class ValidatorImpl implements Validator {
 
     Server request = new ServerImpl();
@@ -27,23 +28,30 @@ public class ValidatorImpl implements Validator {
 
     public boolean isAccountsValid(String accountName) throws AccountIsNotValidExeption, AccountIsNotExistExeption {
         if (accountName.length() > MAX_LENGHT_OF_ACCOUNTNAME || accountName.length() == 0)
-            throw new AccountIsNotValidExeption("Имя аккаунта должно быть больше нуля и меньше" + MAX_LENGHT_OF_ACCOUNTNAME + ".");
+            throw new AccountIsNotValidExeption("Длина имени аккаунта должно быть больше нуля и меньше " + MAX_LENGHT_OF_ACCOUNTNAME + ".");
 
         request.isAccountExist(accountName);
 
         return true;
     }
 
-
+    @Override
     public boolean isAmountValid(String amount) throws AmountIsNotValidExeption {
-        if(amount.isEmpty())
-            throw new AmountIsNotValidExeption("Вы не ввели сумму денег.");
+        if (amount.isEmpty())
+            throw new AmountIsNotValidExeption("Вы ничего не ввели.");
 
-        if(amount.matches("^[0-9]+$"))
-            throw new AmountIsNotValidExeption("Введи сумму цифрами.");
+        Integer num;
+        try {
+            num = Integer.parseInt(amount);
+        } catch (NumberFormatException e) {
+            throw new AmountIsNotValidExeption("Вы ввели не число.");
+        }
 
-        if(Integer.parseInt(amount) < 0)
+        if (num < 0)
             throw new AmountIsNotValidExeption("Сумма должна быть положительной.");
+
+        if (num%100 > 0)
+            throw new AmountIsNotValidExeption("Сумма должна быть кратна 100-м.");
 
         return true;
     }
