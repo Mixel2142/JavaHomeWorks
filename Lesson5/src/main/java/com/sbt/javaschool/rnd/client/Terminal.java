@@ -1,7 +1,5 @@
 package com.sbt.javaschool.rnd.client;
 
-import com.sbt.javaschool.rnd.exceptions.*;
-
 public interface Terminal {
 
     boolean initSession(String accountName);

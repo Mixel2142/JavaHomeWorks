@@ -1,4 +1,4 @@
-package com.sbt.javaschool.rnd.exceptions;
+package com.sbt.javaschool.rnd.server.exceptions;
 
 public class PinCodeIsNotExistExeption extends Exception {
     public PinCodeIsNotExistExeption() {

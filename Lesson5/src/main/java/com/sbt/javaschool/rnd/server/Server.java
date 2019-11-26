@@ -1,6 +1,8 @@
 package com.sbt.javaschool.rnd.server;
 
-import com.sbt.javaschool.rnd.exceptions.*;
+import com.sbt.javaschool.rnd.validating.exceptions.*;
+import com.sbt.javaschool.rnd.server.exceptions.AccountIsNotExistExeption;
+import com.sbt.javaschool.rnd.server.exceptions.PinCodeIsNotExistExeption;
 
 
 public interface Server {
@@ -8,9 +10,9 @@ public interface Server {
 
     public boolean isAccountExist(String data) throws AccountIsNotExistExeption;
 
-    Integer checkBalance(String account); // Возвращает текущий баланс
+    Integer checkBalance(String account);
 
-    Integer withdrawMoney(String account, String amount) throws MoneyExeption;// Возвращает текущий баланс
+    Integer withdrawMoney(String account, String amount) throws MoneyExeption;
 
-    Integer putMoney(String account, String amount);// Возвращает текущий баланс
+    Integer putMoney(String account, String amount);
 }

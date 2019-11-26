@@ -1,4 +1,4 @@
-package com.sbt.javaschool.rnd.exceptions;
+package com.sbt.javaschool.rnd.validating.exceptions;
 
 public class AccountIsNotValidExeption extends Exception {
     public AccountIsNotValidExeption() {

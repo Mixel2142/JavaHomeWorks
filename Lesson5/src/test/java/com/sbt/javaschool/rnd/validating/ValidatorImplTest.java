@@ -1,11 +1,9 @@
 package com.sbt.javaschool.rnd.validating;
 
-import com.sbt.javaschool.rnd.exceptions.*;
-import com.sbt.javaschool.rnd.server.Server;
-import com.sbt.javaschool.rnd.server.ServerImpl;
+import com.sbt.javaschool.rnd.validating.exceptions.*;
+import com.sbt.javaschool.rnd.server.exceptions.AccountIsNotExistExeption;
+import com.sbt.javaschool.rnd.server.exceptions.PinCodeIsNotExistExeption;
 import org.junit.Test;
-import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnit;
 
 import static org.junit.Assert.*;
 
@@ -19,7 +17,6 @@ public class ValidatorImplTest {
         } catch (PinCodeIsNotValidExeption e) {
           assertEquals("Длина пинкода должна быть равной 4.",e.getMessage());
           return;
-        } catch (PinCodeIsNotExistExeption e) {
         }
 
         assertTrue(false);
@@ -33,10 +30,7 @@ public class ValidatorImplTest {
         } catch (PinCodeIsNotValidExeption e) {
             assertEquals("Пинкод может содержать только цифры от 0 до 9.",e.getMessage());
             return;
-        } catch (PinCodeIsNotExistExeption e) {
-        }
-
-        assertTrue(false);
+        } assertTrue(false);
     }
 
     @Test
@@ -47,10 +41,7 @@ public class ValidatorImplTest {
         } catch (PinCodeIsNotValidExeption e) {
             assertEquals("Пинкод может содержать только цифры от 0 до 9.",e.getMessage());
             return;
-        } catch (PinCodeIsNotExistExeption e) {
-        }
-
-        assertTrue(false);
+        } assertTrue(false);
     }
 
     @Test
@@ -61,10 +52,7 @@ public class ValidatorImplTest {
         } catch (PinCodeIsNotValidExeption e) {
             assertEquals("Пинкод может содержать только цифры от 0 до 9.",e.getMessage());
             return;
-        } catch (PinCodeIsNotExistExeption e) {
-        }
-
-        assertTrue(false);
+        } assertTrue(false);
     }
 
     @Test
@@ -75,10 +63,7 @@ public class ValidatorImplTest {
         } catch (PinCodeIsNotValidExeption e) {
             assertEquals("Пинкод может содержать только цифры от 0 до 9.",e.getMessage());
             return;
-        } catch (PinCodeIsNotExistExeption e) {
-        }
-
-        assertTrue(false);
+        } assertTrue(false);
     }
 
     @Test
@@ -89,10 +74,7 @@ public class ValidatorImplTest {
         } catch (PinCodeIsNotValidExeption e) {
             assertEquals("Пинкод может содержать только цифры от 0 до 9.",e.getMessage());
             return;
-        } catch (PinCodeIsNotExistExeption e) {
-        }
-
-        assertTrue(false);
+        } assertTrue(false);
     }
 
     @Test
@@ -103,10 +85,7 @@ public class ValidatorImplTest {
         } catch (PinCodeIsNotValidExeption e) {
             assertEquals("Пинкод может содержать только цифры от 0 до 9.",e.getMessage());
             return;
-        } catch (PinCodeIsNotExistExeption e) {
-        }
-
-        assertTrue(false);
+        } assertTrue(false);
     }
 
     @Test
@@ -117,8 +96,6 @@ public class ValidatorImplTest {
         } catch (AccountIsNotValidExeption e) {
             assertEquals("Длина имени аккаунта должно быть больше нуля и меньше 10.",e.getMessage());
             return;
-        } catch (AccountIsNotExistExeption e) {
-            e.printStackTrace();
         }
 
         assertTrue(false);
@@ -128,12 +105,10 @@ public class ValidatorImplTest {
     public void isAccountsValid2() {
         Validator validator = new ValidatorImpl();
         try {
-            validator.isAccountsValid("1234567890123");
+            validator.isAccountsValid("1234567Ivan890123");
         } catch (AccountIsNotValidExeption e) {
             assertEquals("Длина имени аккаунта должно быть больше нуля и меньше 10.",e.getMessage());
             return;
-        } catch (AccountIsNotExistExeption e) {
-            e.printStackTrace();
         }
 
         assertTrue(false);

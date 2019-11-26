@@ -1,4 +1,4 @@
-package com.sbt.javaschool.rnd.exceptions;
+package com.sbt.javaschool.rnd.validating.exceptions;
 
 public class MoneyExeption extends Exception {
     public MoneyExeption() {

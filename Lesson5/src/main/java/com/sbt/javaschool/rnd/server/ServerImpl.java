@@ -1,7 +1,9 @@
 package com.sbt.javaschool.rnd.server;
 
-import com.sbt.javaschool.rnd.exceptions.*;
-import com.sbt.javaschool.rnd.server.Server;
+import com.sbt.javaschool.rnd.validating.exceptions.*;
+import com.sbt.javaschool.rnd.server.exceptions.AccountIsNotExistExeption;
+import com.sbt.javaschool.rnd.server.exceptions.PinCodeIsNotExistExeption;
+
 import java.util.HashMap;
 
 import java.util.Map;

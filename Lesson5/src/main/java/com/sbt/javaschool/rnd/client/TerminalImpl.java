@@ -1,6 +1,8 @@
 package com.sbt.javaschool.rnd.client;
 
-import com.sbt.javaschool.rnd.exceptions.*;
+import com.sbt.javaschool.rnd.validating.exceptions.*;
+import com.sbt.javaschool.rnd.server.exceptions.AccountIsNotExistExeption;
+import com.sbt.javaschool.rnd.server.exceptions.PinCodeIsNotExistExeption;
 import com.sbt.javaschool.rnd.validating.*;
 import com.sbt.javaschool.rnd.server.Server;
 import com.sbt.javaschool.rnd.server.ServerImpl;
@@ -23,6 +25,7 @@ public class TerminalImpl implements Terminal {
     public boolean initSession(String accountName) {
         try {
             validator.isAccountsValid(accountName);
+            server.isAccountExist(accountName);
             this.accountName = accountName;
             return true;
         } catch (AccountIsNotValidExeption e) {
@@ -76,21 +79,22 @@ public class TerminalImpl implements Terminal {
     @Override
     public boolean checkPinCode(String pinCode) {
         try {
-            if (lockState)
-                throw new AccountIsLockedException("Аккаунт заблокирован на" + lockedTimeSec + "секунд из-за трёх попыток ввода не правильного пароля.");
 
-            if (validator.isPasswordValid(accountName, pinCode)) {
+            if (numberOfUnsuccessfulAttemptsToEnterPinCode == 3 || lockState) {
+                lockAccountOnFiveSec();
+                throw new AccountIsLockedException("Аккаунт заблокирован на " + lockedTimeSec + " секунд из-за трёх попыток ввода не правильного пароля.");
+            }
+
+            if (validator.isPasswordValid(accountName, pinCode) && server.isPinCodeExist(accountName, pinCode)) {
                 accountPassword = pinCode;
                 numberOfUnsuccessfulAttemptsToEnterPinCode = 0;
                 return true;
             }
 
+        } catch (PinCodeIsNotValidExeption | PinCodeIsNotExistExeption e) {
+            System.err.println(e.getMessage());
             numberOfUnsuccessfulAttemptsToEnterPinCode++;
-            if (numberOfUnsuccessfulAttemptsToEnterPinCode == 3) {
-                lockAccountOnFiveSec();
-                throw new AccountIsLockedException("Аккаунт заблокирован на" + lockedTimeSec + "секунд из-за трёх попыток ввода не правильного пароля.");
-            }
-        } catch (PinCodeIsNotValidExeption | AccountIsLockedException | PinCodeIsNotExistExeption e) {
+        } catch (AccountIsLockedException e) {
             System.err.println(e.getMessage());
         }
         return false;
