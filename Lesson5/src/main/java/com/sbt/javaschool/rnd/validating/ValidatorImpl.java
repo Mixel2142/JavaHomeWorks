@@ -15,7 +15,7 @@ public class ValidatorImpl implements Validator {
         if (password.length() != LENGHT_OF_PINCODE)
             throw new PinCodeIsNotValidExeption("Длина пинкода должна быть равной " + LENGHT_OF_PINCODE + ".");
 
-        if (!password.matches("[0-9]{4}"))//?? как засунуть константу LENGHT_OF_PINCODE в регулярное выражение
+        if (!password.matches("[0-9]{4}"))
             throw new PinCodeIsNotValidExeption("Пинкод может содержать только цифры от 0 до 9.");
 
         return true;

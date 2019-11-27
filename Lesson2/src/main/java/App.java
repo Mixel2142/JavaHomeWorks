@@ -1,6 +1,6 @@
 import com.sbt.javaschool.rnd.Person;
 
-public class main {
+public class App {
     public static void main(String[] args) {
 
         Person person1 = new Person(Person.GenderState.MAN, "Ivan");

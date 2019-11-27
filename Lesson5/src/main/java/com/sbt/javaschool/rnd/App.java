@@ -10,10 +10,10 @@ public class App {
     static Scanner scanner = new Scanner(System.in);
     static Terminal terminal = new TerminalImpl();
 
-    public static final int CHECK_BALANCE = 0;
-    public static final int PUT_MONEY = 1;
-    public static final int WITHDRAW_MONEY = 2;
-    public static final int CLOSE_SESSION = 3;
+    private static final int CHECK_BALANCE = 0;
+    private static final int PUT_MONEY = 1;
+    private static final int WITHDRAW_MONEY = 2;
+    private static final int CLOSE_SESSION = 3;
 
     public static void main(String[] args) {
         while (true) {
