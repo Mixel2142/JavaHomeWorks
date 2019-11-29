@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Lesson1" />
+        <module name="Lesson7" />
         <module name="Lesson6" />
         <module name="Lesson5" />
         <module name="Lesson4" />
@@ -18,6 +19,6 @@
     <bytecodeTargetLevel target="8" />
   </component>
   <component name="JavacSettings">
-    <option name="GENERATE_NO_WARNINGS" value="true" />
+    <option name="PREFER_TARGET_JDK_COMPILER" value="false" />
   </component>
 </project>

@@ -15,7 +15,12 @@
         <module>Lesson4</module>
         <module>Lesson5</module>
         <module>Lesson6</module>
+        <module>Lesson7</module>
     </modules>
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -40,6 +45,6 @@
             <artifactId>spring-context</artifactId>
             <version>5.2.1.RELEASE</version>
         </dependency>
-    </dependencies>
 
+    </dependencies>
 </project>
