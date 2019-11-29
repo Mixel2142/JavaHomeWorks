@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
 public class App {
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
 
         A myCllass = new A();
         //Вывести на консоль все методы класса, включая все родительские методы(включая приватные)
@@ -23,10 +23,13 @@ public class App {
         if (objClass != null) {
             Method[] methods = objClass.getDeclaredMethods();
             Field[] fields = objClass.getDeclaredFields();
+
             System.out.println("Выводим на консоль все методы класса " + objClass.getSimpleName() + ":");
+
             printAllMethods(methods);
             printAllGetters(methods);
             checkConstStringNameEquivalentToValue(fields);
+
             recPrintAllMethods(objClass.getSuperclass());
         }
     }
@@ -36,11 +39,11 @@ public class App {
             String returnType = it.getReturnType().getSimpleName();
             String nameMethod = it.getName();
 
-            String args = "(";
+            StringBuffer args = new StringBuffer("(");
             for (Class<?> itArg : it.getParameterTypes()) {
-                args += itArg.getSimpleName() + ", ";
+                args.append(itArg.getSimpleName() + ", ");
             }
-            args += ");";
+            args.append(");");
 
             System.out.println(returnType + "\t" + nameMethod + args);
         }
@@ -54,11 +57,11 @@ public class App {
                 String returnType = it.getReturnType().getSimpleName();
                 String nameMethod = it.getName();
 
-                String args = "(";
+                StringBuffer args = new StringBuffer("(");
                 for (Class<?> itArg : it.getParameterTypes()) {
-                    args += itArg.getSimpleName() + ", ";
+                    args.append(itArg.getSimpleName() + ", ");
                 }
-                args += ");";
+                args.append(");");
 
                 System.out.println(returnType + "\t" + nameMethod + args);
             }
@@ -70,14 +73,13 @@ public class App {
 
         for (Field it : fields) {
             if (isConstString(it)) {
-                    C obj = new C();
+                C obj = new C();
 
-                    if(it.get(obj) == it.getName()) {
-                        System.out.println(it.getName() +"\t= "+it.get(obj));
-                    }
-                    else {
-                        System.out.println(it.getName() +"\t!= "+it.get(obj));
-                    }
+                if (it.get(obj) == it.getName()) {
+                    System.out.println(it.getName() + "\t= " + it.get(obj));
+                } else {
+                    System.out.println(it.getName() + "\t!= " + it.get(obj));
+                }
             }
         }
     }
@@ -91,7 +93,7 @@ public class App {
 
     public static boolean isConstString(Field field) {
         if (field.getType() != String.class) return false;
-        if (!Modifier.isFinal(field.getModifiers()))return false;
+        if (!Modifier.isFinal(field.getModifiers())) return false;
         return true;
     }
 }
