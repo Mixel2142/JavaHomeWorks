@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="PluginAPI">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Lesson7/PluginAPI/out/PluginAPI.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

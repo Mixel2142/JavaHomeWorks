@@ -8,7 +8,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Lesson1" />
+        <module name="PluginAPI" />
         <module name="Plugins" />
+        <module name="AppWithPlugins" />
         <module name="Lesson6" />
         <module name="Lesson5" />
         <module name="Lesson4" />
@@ -17,7 +19,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
-      <module name="Lesson7Plugins" target="1.8" />
+      <module name="Lesson7" target="1.8" />
+      <module name="Plugins" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
