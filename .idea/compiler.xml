@@ -9,7 +9,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Lesson1" />
         <module name="PluginAPI" />
-        <module name="Plugins" />
+        <module name="PluginWithNameFromApp" />
+        <module name="MyFirstPlugin" />
         <module name="AppWithPlugins" />
         <module name="Lesson6" />
         <module name="Lesson5" />

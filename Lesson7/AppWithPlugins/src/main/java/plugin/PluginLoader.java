@@ -12,13 +12,24 @@ import java.util.HashMap;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
-public class PluginLoader {
+public class PluginLoader extends ClassLoader {
 
-    public static Class<?> loadClass(String dir, String config) throws ClassNotFoundException, IOException {
-        return loadClass(new File(dir), config);
+    final static String config = "MANIFEST.MF";
+
+    @Override
+    public Class<?> loadClass(String dir) {
+        try {
+            return loadClass(new File(dir));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            System.err.println("Class is not found!");
+        }
+        return null;
     }
 
-    private static Class<?> loadClass(File dir, String config) throws IOException, ClassNotFoundException {
+    private static Class<?> loadClass(File dir) throws IOException, ClassNotFoundException {
         final JarFile jf = new JarFile(dir);
         final JarEntry je = jf.getJarEntry(config);
 
@@ -36,29 +47,44 @@ public class PluginLoader {
 
         jf.close();
 
-        return Class.forName(data.get("Magic:"), true, new URLClassLoader(new URL[]{dir.toURI().toURL()}));
+        return Class.forName(data.get("Magic:"), true, new URLClassLoader(new URL[]{dir.toURI().toURL()})); // URLClassLoader поменять на EncryptedClassLoader если нужно расшифровать
     }
 
-    public static Class<?>[] loadDirectoryC(String dir, String config) throws ClassNotFoundException, IOException {
-        return loadDirectoryC(new File(dir), config);
+    public static Class<?>[] loadAllClasses(String dir) {
+        try {
+            return loadAllClasses(new File(dir));
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Class is not found!");
+        }
+        return null;
     }
 
-    private static Class<?>[] loadDirectoryC(File dir, String config) throws ClassNotFoundException, IOException {
+    private static Class<?>[] loadAllClasses(File dir) throws ClassNotFoundException, IOException {
         final File[] files = dir.listFiles();
 
         final Class<?>[] classes = new Class<?>[files.length];
 
         for (int i = 0; i < files.length; i++)
-            classes[i] = loadClass(files[i], config);
+            classes[i] = loadClass(files[i]);
 
         return classes;
     }
 
-    private static Plugin initAsPlugin(Class<?> group) throws InstantiationException, IllegalAccessException {
-        return (Plugin) group.newInstance();
+    private static Plugin initAsPlugin(Class<?> group) {
+        try {
+            return (Plugin) group.newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    public static Plugin[] initAsPlugin(Class<?>[] group) throws InstantiationException, IllegalAccessException {
+    public static Plugin[] initAsPlugins(Class<?>[] group) {
         final Plugin[] plugins = new Plugin[group.length];
         for (int i = 0; i < group.length; i++)
             plugins[i] = initAsPlugin(group[i]);

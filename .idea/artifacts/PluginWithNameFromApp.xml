@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="PluginWithNameFromApp">
+    <output-path>$PROJECT_DIR$/Lesson7/Plugins/out</output-path>
+    <root id="archive" name="PluginWithNameFromApp.jar">
+      <element id="module-output" name="PluginWithNameFromApp" />
+    </root>
+  </artifact>
+</component>
