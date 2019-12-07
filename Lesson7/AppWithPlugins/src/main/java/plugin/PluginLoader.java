@@ -12,11 +12,10 @@ import java.util.HashMap;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
-public class PluginLoader extends ClassLoader {
+public class PluginLoader{
 
     final static String config = "MANIFEST.MF";
 
-    @Override
     public Class<?> loadClass(String dir) {
         try {
             return loadClass(new File(dir));
@@ -47,7 +46,7 @@ public class PluginLoader extends ClassLoader {
 
         jf.close();
 
-        return Class.forName(data.get("Magic:"), true, new URLClassLoader(new URL[]{dir.toURI().toURL()})); // URLClassLoader поменять на EncryptedClassLoader если нужно расшифровать
+        return Class.forName(data.get("Magic:"), true, new URLClassLoader(new URL[]{dir.toURI().toURL()})); // URLClassLoader поменять на EncryptedClassLoader если нужно расшифровать или другой лкасс лоадер
     }
 
     public static Class<?>[] loadAllClasses(String dir) {
