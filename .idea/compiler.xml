@@ -7,11 +7,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="01_Java introduction" />
         <module name="AppWithPlugins" />
-        <module name="PluginWithNameFromApp" />
+        <module name="01_Java introduction" />
         <module name="PluginAPI" />
         <module name="MyFirstPlugin" />
+        <module name="PluginWithNameFromApp" />
+        <module name="Lesson8" />
         <module name="Lesson6" />
         <module name="Lesson5" />
         <module name="Lesson4" />
@@ -19,7 +20,10 @@
         <module name="Lesson2" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="8" />
+    <bytecodeTargetLevel target="8">
+      <module name="Lesson7" target="1.8" />
+      <module name="Plugins" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="PREFER_TARGET_JDK_COMPILER" value="false" />
